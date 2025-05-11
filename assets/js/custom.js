@@ -150,6 +150,8 @@ $("form .btn[type='submit']").on("click", function(){
     var loading = $('.loading');
     var button = $(this);
 
+    console.log('test');
+
     form.validate({
         messages: {
             name: "O campo Nome é obrigatório.",
@@ -161,7 +163,7 @@ $("form .btn[type='submit']").on("click", function(){
             loading.show();
             status.html('');
 
-            $.post("./assets/php/email.php", form.serialize(),  function(response) {
+            $.post("http://schmid.test/assets/php/emassil.php", form.serialize(),  function(response) {
                 status.append(response);
                 //form.addClass("submitted");
 
