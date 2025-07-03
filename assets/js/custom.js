@@ -89,6 +89,14 @@ $(document).ready(function($) {
     if ($('.image-popup-gallery').length > 0) {
         $('.image-popup-gallery').magnificPopup(popImageConfigs);
     }
+    
+    $('.houses-popup').each(function(i, element) {
+        $(element).magnificPopup(popImageConfigs);
+    });
+
+    
+
+
 
     if ($('.video-popup').length > 0) {
         $('.video-popup').magnificPopup({
@@ -252,6 +260,7 @@ $(window).load(function(){
             equalHeight( $equalHeight );
         }
     }
+
     initializeOwl();
     centerVerticalNavigation();
 });

@@ -115,6 +115,7 @@ Headers:		'Montserrat', sans-serif;
 }
 .navigation .right .navigation-links li {
   display: inline-block;
+  position: relative;
 }
 .navigation .right .navigation-links li.active a {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
@@ -150,6 +151,37 @@ Headers:		'Montserrat', sans-serif;
 }
 .navigation .right .navigation-links li a:hover:after {
   width: 100%;
+}
+
+.navigation .right .navigation-links li:hover ul{
+  display: block;
+} 
+.navigation .right .navigation-links li ul {
+  top: 100%;
+  margin-top: 0;
+  padding: 0;
+  text-align: right;
+}
+@media (min-width: 768px) {
+  .navigation .right .navigation-links li ul {
+    background-color: #000;
+    position: absolute;
+    text-align: left;
+    display: none;
+  }
+  .navigation .right .navigation-links li ul li a{
+    display: block; 
+  }
+}
+.navigation .right .navigation-links li ul li {
+  width: 100%;
+}
+.navigation .right .navigation-links li ul li a{
+  color: #FFF;
+  opacity: 1; 
+}
+.navigation .right .navigation-links li ul a{
+  color: red;
 }
 .navigation .nav-btn {
   display: none;
@@ -377,6 +409,7 @@ Headers:		'Montserrat', sans-serif;
   font-size: 16px;
   line-height: 22px;
   margin-bottom: 35px;
+  opacity: 1;
 }
 .hero-section .video-tour {
   font-size: 16px;
@@ -3179,7 +3212,20 @@ form .status i {
 #banner {
   margin-bottom: 90px;
 }
+
+.house-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
 /* 6. Responsive */
+@media (min-width: 600px) {
+  .house-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 @media (min-width: 992px) {
   .box-by {
     justify-content: flex-end;
@@ -3188,6 +3234,9 @@ form .status i {
 
   .note, .by {
     text-align: left;
+  }
+  .house-list {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
