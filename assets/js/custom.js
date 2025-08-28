@@ -146,47 +146,49 @@ $(document).ready(function($) {
         $(".count-down").countdown({until: new Date(year, month, day), padZeroes: true});
     }
 
-//  Form Validation
+    //  Form Validation
 
-$("form .btn[type='submit']").on("click", function(){
-    var form = $(this).closest("form");
-    var nameField = $('#form-contact-name');
-    var emailField = $('#form-contact-email');
-    var textField = $('#form-contact-message');
+    $("form .btn[type='submit']").on("click", function(){
+        var form = $(this).closest("form");
+        var nameField = $('#form-contact-name');
+        var emailField = $('#form-contact-email');
+        var textField = $('#form-contact-message');
+        var siteNameField = $('#page-form').val();
 
-    var status = $('.status');
-    var loading = $('.loading');
-    var button = $(this);
+        var status = $('.status');
+        var loading = $('.loading');
+        var button = $(this);
 
-    console.log('test');
+        form.validate({
+            messages: {
+                name: "O campo Nome é obrigatório.",
+                email: "O campo E-mail é obrigatório.",
+                message: "O campo Mensagem é obrigatório"
+            },
+            submitHandler: function() {
+                button.hide();
+                loading.show();
+                status.html('');
 
-    form.validate({
-        messages: {
-            name: "O campo Nome é obrigatório.",
-            email: "O campo E-mail é obrigatório.",
-            message: "O campo Mensagem é obrigatório"
-        },
-        submitHandler: function() {
-            button.hide();
-            loading.show();
-            status.html('');
+                var formData = form.serialize() + '&siteName=' + encodeURIComponent(siteNameField);
 
-            $.post("http://schmid.test/assets/php/emassil.php", form.serialize(),  function(response) {
-                status.append(response);
-                //form.addClass("submitted");
+                $.post("https://email-queues.vercel.app/api/v1/lead", formData, function(response) {
+                    status.append(response);
+                    //form.addClass("submitted");
 
-                nameField.val('');
-                emailField.val('');
-                textField.val('');
+                    nameField.val('');
+                    emailField.val('');
+                    textField.val('');
+                    // No need to clear siteNameField as it's a static value
 
-                loading.hide();
-                button.show();
-            });
+                    loading.hide();
+                    button.show();
+                });
 
-            return false;
-        }
+                return false;
+            }
+        });
     });
-});
 
     $("[data-background-color-custom]").each(function() {
         $(this).css( "background-color", $(this).attr("data-background-color-custom") );

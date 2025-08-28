@@ -1,0 +1,26 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "aura.schmidincorporadora.com.br"
+        }
+      ],
+      "destination": "https://schmidincorporadora.com.br/aura/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "evidencias.schmidincorporadora.com.br"
+        }
+      ],
+      "destination": "https://schmidincorporadora.com.br/evidencias/$1",
+      "permanent": true
+    }
+  ]
+}
